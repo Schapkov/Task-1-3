@@ -20,12 +20,11 @@ public class UserServiceImpl implements UserService {
 
     public void saveUser(String name, String lastName, byte age) {
         user.saveUser(name, lastName, age);
-
+        System.out.printf("User c именем - %s добавлен в базу данных%n", name);
     }
 
     public void removeUserById(long id) {
         user.removeUserById(id);
-
     }
 
     public List<User> getAllUsers() {
@@ -35,6 +34,5 @@ public class UserServiceImpl implements UserService {
 
     public void cleanUsersTable() {
         user.cleanUsersTable();
-
     }
 }
