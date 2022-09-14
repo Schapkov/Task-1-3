@@ -1,23 +1,32 @@
 package jm.task.core.jdbc;
 
+import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
 
+import java.util.List;
+
 public class Main {
-    private final static UserService USER = new UserServiceImpl();
+    private final static UserService userService = new UserServiceImpl();
 
     public static void main(String[] args) {
-        USER.createUsersTable();
+        userService.dropUsersTable();
+        userService.createUsersTable();
 
-        USER.saveUser("Name1", "LastName1", (byte) 20);
-        USER.saveUser("Name2", "LastName2", (byte) 25);
-        USER.saveUser("Name3", "LastName3", (byte) 31);
-        USER.saveUser("Name4", "LastName4", (byte) 38);
+        userService.saveUser("Name1", "LastName1", (byte) 20);
+        userService.saveUser("Name2", "LastName2", (byte) 25);
+        userService.saveUser("Name3", "LastName3", (byte) 31);
+        userService.saveUser("Name4", "LastName4", (byte) 38);
 
-        USER.removeUserById(1);
-        USER.getAllUsers();
-        USER.cleanUsersTable();
-        USER.dropUsersTable();
+        userService.removeUserById(1);
+        userService.getAllUsers();
+//        List<User> temp = userService.getAllUsers();
+//        for (User e : temp) {
+//            System.out.println(e);
+//        }
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
+
 
     }
 }
