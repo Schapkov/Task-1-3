@@ -27,7 +27,7 @@ public class Util {
         return instance.makeSessionFactory();
     }
 
-    public static Util getInstance() {
+    private static Util getInstance() {
         if(instance == null) {
             instance = new Util();
         }
