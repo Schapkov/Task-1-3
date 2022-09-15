@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class Util {
+    private static Util instance;
+
     private final static String PATH = "jdbc:mysql://localhost:3306/mydb?serverTimezone=Europe/Moscow";
     private final static String LOGIN = "root";
     private final static String PASSWORD = "root";
@@ -21,6 +23,18 @@ public class Util {
     }
 
     public static SessionFactory sessionFactory () {
+        Util instance = Util.getInstance();
+        return instance.makeSessionFactory();
+    }
+
+    public static Util getInstance() {
+        if(instance == null) {
+            instance = new Util();
+        }
+        return instance;
+    }
+
+    private static SessionFactory makeSessionFactory () {
         Properties properties = new Properties();
         properties.setProperty("hibernate.connection.url", PATH);
         properties.setProperty("dialect", "org.hibernate.dialect.MySQLDialect");
